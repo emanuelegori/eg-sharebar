@@ -1,0 +1,108 @@
+.eg-sharebar {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 24px auto 0;
+  max-width: 1100px;
+}
+.share-masto-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+
+/* Tutti i bottoni, select, input stesse dimensioni */
+.share-btn,
+.masto-select,
+.masto-input {
+  min-width: 170px;
+  max-width: 200px;
+  height: 48px;
+  border-radius: 13px;
+  font-size: 1.09em;
+  border: none;
+  box-shadow: 0 1px 3px #0001;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter .18s;
+  margin: 0;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #f4f4f7;
+  color: #23272f;
+}
+.share-btn.mastodon, .masto-select, .masto-input {
+  background: #6364ff;
+  color: #fff;
+}
+.masto-select, .masto-input {
+  font-size: 1em;
+  font-weight: 400;
+  padding: 0 16px;
+  box-shadow: none;
+  border: 1.5px solid #4442;
+  outline: none;
+  width: 100%;
+  max-width: 200px;
+}
+.masto-select option {
+  background: #fff;
+  color: #23272f;
+}
+.masto-select:focus, .masto-input:focus {
+  border-color: #7c3aed;
+  background: #ecefff;
+}
+.masto-input::placeholder {
+  color: #b8b8cc;
+  opacity: 1;
+}
+.share-btn.x        { background: #111; color: #fff; }
+.share-btn.bluesky  { background: #0277fd; color: #fff; }
+.share-btn.telegram { background: #229ed9; color: #fff; }
+.share-btn.link     { background: #10b981; color: #fff; }
+.share-btn .icon {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.share-btn:hover,
+.masto-select:hover,
+.masto-input:hover {
+  filter: brightness(0.93);
+}
+
+@media (max-width: 900px) {
+  .eg-sharebar {
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 700px;
+  }
+  .share-masto-col {
+    margin-bottom: 8px;
+  }
+}
+@media (max-width: 700px) {
+  .eg-sharebar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    max-width: 430px;
+  }
+  .share-btn, .masto-select, .masto-input {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+  }
+  .share-masto-col {
+    width: 100%;
+    align-items: stretch;
+  }
+}
