@@ -61,7 +61,8 @@ Se lo trovi utile, usalo pure e personalizzalo secondo le tue esigenze!
 
 ## Licenza
 
-Questo plugin è distribuito sotto licenza MIT.
+Questo plugin è distribuito sotto licenza **MIT**.  
+Vedi il file LICENSE per dettagli.
 
 ## Autore
 
