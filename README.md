@@ -1,47 +1,68 @@
-/**
- * EG Sharebar — Plugin WordPress
- * -------------------------------------------
- * Versione:      5.2
- * Autore:        Emanuele Gori
- * Descrizione:   Barra social personalizzata per WordPress, richiamabile via funzione PHP,
- *                con supporto a Mastodon multiistanza (anche custom) e altri social.
- *
- * FUNZIONALITÀ PRINCIPALI:
- * - Pulsante Mastodon con selezione istanza tra predefinite o personalizzata (“altra istanza...”)
- * - Salvataggio e ripristino dell’ultima istanza scelta (anche personalizzata) via localStorage
- * - Inserimento dinamico dell’istanza personalizzata come opzione reale nella select
- * - UX pulita sia su desktop che mobile (input si nasconde anche con esc o tap fuori)
- * - Supporto condivisione su X, Bluesky, Telegram e “Copia Link”
- * - Icone SVG locali facilmente configurabili tramite variabile centrale
- * - Accessibilità: aria-label su input/select/bottoni per screen reader
- *
- * COME FUNZIONA (logica):
- * 1. L’utente vede la barra social con il pulsante Mastodon e una select delle istanze predefinite.
- * 2. Può scegliere “Altra istanza...” per inserire una propria istanza Mastodon.
- *    - L’input viene mostrato, la select nascosta.
- *    - Premendo INVIO, la nuova istanza viene aggiunta come opzione vera (prima di “Altra istanza…”), selezionata e salvata.
- *    - Premendo ESC o facendo tap fuori, l’input viene nascosto e si torna alla select (senza cambiare la scelta se non confermata).
- * 3. L’ultima scelta (anche custom) viene memorizzata in localStorage e ripristinata al reload.
- * 4. Il pulsante Mastodon aggiorna sempre il link di share sull’istanza selezionata/corrente.
- *
- * PUNTI DI FORZA:
- * - Rispetto della privacy, nessuna telemetria
- * - Semplice da personalizzare e manutenere
- * - Nessuna dipendenza esterna (tutto Vanilla JS)
- * - Unica fonte per le icone, basta cambiare $icons_url
- * - Accessibilità curata (per SEO e inclusività)
- *
- * PERSONALIZZAZIONE:
- * - Per cambiare le istanze di default, modifica l’array $instances.
- * - Per cambiare la directory delle icone, cambia $icons_url.
- * - Puoi aggiungere o togliere altri social aggiungendo/rimuovendo i rispettivi <a> nella sharebar.
- *
- * NOTE:
- * - Testato su WordPress 6.8.3, PHP 8.2.29, browser desktop e mobile principali.
- * - Compatibile con la maggior parte dei temi, grazie a stili inline.
- * - Il file CSS “sharebar-style.css” può essere usato per personalizzare il look.
- *
- * Autore: Emanuele Gori — https://emanuelegori.uno
- * Data ultima modifica: 20 agosto 2025
- */
+![EG Sharebar - screenshot](https://github.com/emanuelegori/eg-sharebar/raw/main/screenshot.png)
 
+# EG Sharebar
+
+**EG Sharebar** è un plugin WordPress che aggiunge una barra di condivisione social personalizzata a post e pagine, con pulsanti grandi e usabilità ottimizzata.
+
+---
+
+## Ambiente di test
+
+- **WordPress**: 6.8.3 
+- **PHP**: 8.2
+- **Browser**: Chrome (desktop e mobile), Firefox (desktop e mobile), Librewolf (desktop)
+
+---
+
+## Funzionalità principali
+
+- Pulsanti di condivisione social grandi e accessibili per Mastodon, X (ex Twitter), Bluesky e Copia link.
+- Supporto per Mastodon con selezione istanza e inserimento istanza personalizzata.
+- Firma personalizzabile per ogni social ("via @emanuelegori", ecc.).
+- Copia rapida del link negli appunti.
+- Anteprima ottimizzata per Twitter/X e social (se meta tag e robots.txt sono configurati).
+- Compatibile con shortcode `[eg_sharebar]` e inserimento via PHP: `<?php eg_sharebar(); ?>` o `if (function_exists('eg_sharebar')) eg_sharebar();`
+
+## Installazione
+
+1. Scarica o clona il plugin nella cartella `wp-content/plugins/eg-sharebar`.
+2. Attiva il plugin dalla bacheca di WordPress.
+3. Inserisci lo shortcode `[eg_sharebar]` dove vuoi mostrare la barra, oppure richiama la funzione PHP `eg_sharebar()` nel tuo tema/template.
+
+## Configurazione
+
+- Puoi personalizzare l’istanza di default Mastodon modificando la variabile `$default_instance` nel file `eg-sharebar.php`.
+- La firma per ogni social è configurabile nelle variabili apposite del file PHP.
+- Per una corretta anteprima su Twitter/X, assicurati che il tuo sito abbia i meta tag Twitter Card e che il file `robots.txt` consenta l’accesso alle immagini in `/wp-content/uploads/`.
+
+## Esempio di utilizzo
+
+### Shortcode:
+
+```wordpress
+[eg_sharebar]
+```
+
+### PHP nel template:
+
+```php
+<?php if (function_exists('eg_sharebar')) { eg_sharebar(); } ?>
+```
+
+## Personalizzazione
+
+- Per modificare lo stile, puoi editare il file CSS `sharebar-style.css` oppure aggiungere CSS personalizzato.
+- Gli SVG delle icone social sono nella cartella `social-icons`.
+
+## Supporto
+
+Questo plugin è stato sviluppato per uso personale e viene distribuito senza supporto attivo. Non sono garantiti aggiornamenti o assistenza.
+Se lo trovi utile, usalo pure e personalizzalo secondo le tue esigenze!
+
+## Licenza
+
+Questo plugin è distribuito sotto licenza MIT.
+
+## Autore
+
+Blog: [Homelab notes](https://emanuelegori.uno) - Fediverso: [@emanuelegori@mastodon.uno](https://mastodon.uno/@emanuelegori)
