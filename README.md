@@ -22,7 +22,8 @@
 - Firma personalizzabile per ogni social ("via @emanuelegori", ecc.).
 - Copia rapida del link negli appunti.
 - Compatibile con shortcode `[eg_sharebar]` e inserimento via PHP: `<?php eg_sharebar(); ?>` o `if (function_exists('eg_sharebar')) eg_sharebar();`
-- Non è presente alcun sistema di telemetria o tracciamento.
+- Non è presente alcun sistema di telemetria o tracciamento. 
+- Leggerissimo e compatibile con la maggior parte dei temi WordPress.
 
 ## Installazione - Installation
 
