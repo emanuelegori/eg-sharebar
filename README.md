@@ -21,7 +21,6 @@
 - Supporto per Mastodon con selezione istanza e inserimento istanza personalizzata.
 - Firma personalizzabile per ogni social ("via @emanuelegori", ecc.).
 - Copia rapida del link negli appunti.
-- Anteprima ottimizzata per Twitter/X e social (se meta tag e robots.txt sono configurati).
 - Compatibile con shortcode `[eg_sharebar]` e inserimento via PHP: `<?php eg_sharebar(); ?>` o `if (function_exists('eg_sharebar')) eg_sharebar();`
 
 ## Installazione - Installation
@@ -59,6 +58,9 @@
 
 Questo plugin è stato sviluppato per uso personale e viene distribuito senza supporto attivo. Non sono garantiti aggiornamenti o assistenza.
 Se lo trovi utile, usalo pure e personalizzalo secondo le tue esigenze!
+
+This plugin was developed for personal use and is distributed without active support. Updates or assistance are not guaranteed.  
+If you find it useful, feel free to use it and customize it to suit your needs!
 
 ## Licenza - License
 
