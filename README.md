@@ -8,7 +8,7 @@
 
 ## Ambiente di test
 
-- **WordPress**: 6.8.3 
+- **WordPress**: 6.8.2 
 - **PHP**: 8.2
 - **Browser**: Chrome (desktop e mobile), Firefox (desktop e mobile), Librewolf (desktop)
 
