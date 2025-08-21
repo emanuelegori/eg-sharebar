@@ -50,7 +50,7 @@
 <?php if (function_exists('eg_sharebar')) { eg_sharebar(); } ?>
 ```
 
-## Personalizzazione
+## Personalizzazione - Customization
 
 - Per modificare lo stile, puoi editare il file CSS `sharebar-style.css` oppure aggiungere CSS personalizzato.
 - Gli SVG delle icone social sono nella cartella `social-icons`.
