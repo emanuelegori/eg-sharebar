@@ -9,7 +9,8 @@
 ## Ambiente di test
 
 - **WordPress**: 6.8.2 
-- **PHP**: 8.2
+- **PHP**: 8.2.29
+- **Redis Version**: 	8.2.0
 - **Browser**: Chrome (desktop e mobile), Firefox (desktop e mobile), Librewolf (desktop)
 
 ---
