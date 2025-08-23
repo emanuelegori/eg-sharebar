@@ -28,7 +28,7 @@
 ## Installazione - Installation
 
 1. Scarica o clona il plugin nella cartella `wp-content/plugins/eg-sharebar.
-2. Modifica firma personalizzata in eg-sharebar: 'via @emanuelegori@emanuelegori.uno'
+2. Modifica firma personalizzata in eg-sharebar: 'via @username@istanza'
 3. Attiva il plugin dalla bacheca di WordPress.
 4. Inserisci lo shortcode `[eg_sharebar]` dove vuoi mostrare la barra, oppure richiama la funzione PHP `eg_sharebar()` nel tuo tema/template.
 
