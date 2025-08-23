@@ -3,7 +3,7 @@
 Plugin Name: EG Sharebar
 Description: Barra social personalizzata richiamabile via funzione PHP.
 Author: Emanuele Gori
-Version: 5.2
+Version: 5.4.1
 */
 
 if (!defined('ABSPATH')) exit;
@@ -13,6 +13,20 @@ function eg_sharebar_render() {
     $url = get_permalink();
 
     $default_instance = 'mastodon.uno';
+
+    // Firma personalizzata per ogni social
+    $signature_masto = ' via @emanuelegori@emanuelegori.uno';
+    $signature_x     = ' via @40annibuttati';
+    $signature_bluesky = ' via @emanuelegori@emanuelegori.uno';
+    $signature_telegram = ' via emanuelegori.uno';
+    
+    $premessa = 'Mi è piaciuto '; 
+
+    $share_text_mastodon = $premessa . $titolo . ' ' . $url . $signature_masto;
+    $share_text_x        = $premessa . $titolo . ' ' . $url . $signature_x;
+    $share_text_bluesky  = $premessa . $titolo . ' ' . $url . $signature_bluesky;
+    $share_text_telegram = $premessa . $titolo . ' ' . $url . $signature_telegram;
+
     $instances = [
         'mastodon.uno'      => 'mastodon.uno',
         'sociale.network'   => 'sociale.network',
@@ -26,12 +40,12 @@ function eg_sharebar_render() {
     ob_start();
     ?>
     <div class="eg-condividi-label" style="font-weight:600; margin-top:32px; margin-bottom:12px; font-size:1.1em; color:#222;">
-      Condividi l'articolo su:
+      Ti è piaciuto l'articolo? Condividilo su:
     </div>
     <div class="eg-sharebar" style="display:flex; gap:14px; flex-wrap:wrap; justify-content:center;">
         <div class="eg-masto-col" style="display:flex; flex-direction:column; align-items:center; margin-right:12px;">
-            <a id="eg-masto-btn" class="share-btn mastodon" href="<?php echo esc_url("https://{$default_instance}/share?text=" . urlencode($titolo . ' ' . $url)); ?>" 
-               target="_blank" rel="noopener" aria-label="Condividi su Mastodon">
+            <a id="eg-masto-btn" class="share-btn mastodon" href="<?php echo esc_url("https://{$default_instance}/share?text=" . urlencode($share_text_mastodon)); ?>" 
+               target="_blank" rel="noopener" aria-label="Condividi su Mastodon" data-tooltip="Condividi su Mastodon">
                 <img class="icon" src="<?php echo esc_url($icons_url . 'mastodon.svg'); ?>" alt="Mastodon" />
                 <span id="eg-masto-label">Mastodon</span>
             </a>
@@ -44,19 +58,19 @@ function eg_sharebar_render() {
             <input id="eg-masto-custom" class="masto-input" type="text" placeholder="esc per uscire"
                 style="width:100%; display:none; margin-bottom:7px; padding:7px 12px; border-radius:8px; border:1.5px solid #6364ff33; font-size:1.1em; text-align:center;" aria-label="Inserisci istanza personalizzata"/>
         </div>
-        <a class="share-btn x" href="<?php echo esc_url('https://x.com/intent/tweet?text=' . urlencode($titolo . ' ' . $url)); ?>" target="_blank" rel="noopener" aria-label="Condividi su X">
+        <a class="share-btn x" href="<?php echo esc_url('https://x.com/intent/tweet?text=' . urlencode($share_text_x)); ?>" target="_blank" rel="noopener" aria-label="Condividi su X " data-tooltip="Condividi su X">
             <img class="icon" src="<?php echo esc_url($icons_url . 'x.svg'); ?>" alt="X" />
             X
         </a>
-        <a class="share-btn bluesky" href="<?php echo esc_url('https://bsky.app/intent/compose?text=' . urlencode($titolo . ' ' . $url)); ?>" target="_blank" rel="noopener" aria-label="Condividi su Bluesky">
+        <a class="share-btn bluesky" href="<?php echo esc_url('https://bsky.app/intent/compose?text=' . urlencode($share_text_bluesky)); ?>" target="_blank" rel="noopener" aria-label="Condividi su Bluesky" data-tooltip="Condividi su Bluesky">
             <img class="icon" src="<?php echo esc_url($icons_url . 'bluesky.svg'); ?>" alt="Bluesky" />
             Bluesky
         </a>
-        <a class="share-btn telegram" href="<?php echo esc_url('https://t.me/share/url?url=' . urlencode($url) . '&text=' . urlencode($titolo)); ?>" target="_blank" rel="noopener" aria-label="Condividi su Telegram">
+        <a class="share-btn telegram" href="<?php echo esc_url('https://t.me/share/url?url=' . urlencode($url) . '&text=' . urlencode($titolo . $signature_telegram)); ?>" target="_blank" rel="noopener" aria-label="Condividi su Telegram" data-tooltip="Condividi su Telegram">
             <img class="icon" src="<?php echo esc_url($icons_url . 'telegram.svg'); ?>" alt="Telegram" />
             Telegram
         </a>
-        <button class="share-btn link" onclick="egCopyLink('<?php echo esc_js($url); ?>')" aria-label="Copia link negli appunti">
+        <button class="share-btn link" onclick="egCopyLink('<?php echo esc_js($url); ?>')" aria-label="Copia link" data-tooltip="Copia link">
             <img class="icon" src="<?php echo esc_url($icons_url . 'link.svg'); ?>" alt="Link" />
             Copia Link
         </button>
@@ -70,13 +84,13 @@ function eg_sharebar_render() {
         const mastoCustom = document.getElementById("eg-masto-custom");
         const mastoBtn = document.getElementById("eg-masto-btn");
         const defaultInstance = <?php echo json_encode($default_instance); ?>;
-        const shareText = <?php echo json_encode($titolo . ' ' . $url); ?>;
+        const shareTextMasto = <?php echo json_encode($share_text_mastodon); ?>;
 
         let currentInstance = egGetInstance() || defaultInstance;
-        let customOption = null; // Per tenere traccia se la custom è già presente
+        let customOption = null;
 
         function updateMastoBtn() {
-            mastoBtn.href = "https://" + currentInstance + "/share?text=" + encodeURIComponent(shareText);
+            mastoBtn.href = "https://" + currentInstance + "/share?text=" + encodeURIComponent(shareTextMasto);
         }
 
         function setSelectValue(val) {
@@ -89,14 +103,12 @@ function eg_sharebar_render() {
                 }
             }
             if (!found) {
-                // Se non presente, aggiungi la custom istanza come opzione
                 addOrUpdateCustomOption(val);
                 mastoSelect.value = val;
             }
         }
 
         function addOrUpdateCustomOption(val) {
-            // Se già presente aggiorna, altrimenti aggiungi
             if (customOption) {
                 customOption.value = val;
                 customOption.text = val;
@@ -104,7 +116,6 @@ function eg_sharebar_render() {
                 customOption = document.createElement("option");
                 customOption.value = val;
                 customOption.text = val;
-                // Inserisci la custom prima di "Altra istanza..."
                 let otherOption = mastoSelect.querySelector('option[value="other"]');
                 mastoSelect.insertBefore(customOption, otherOption);
             }
