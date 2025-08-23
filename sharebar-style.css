@@ -1,3 +1,6 @@
+
+/* CSS sharebar 5.4.1*/
+
 .eg-sharebar {
   display: flex;
   gap: 14px;
@@ -105,4 +108,36 @@
     width: 100%;
     align-items: stretch;
   }
+}
+
+/* Tooltip base */
+.eg-sharebar .share-btn {
+  position: relative;
+}
+
+.eg-sharebar .share-btn[data-tooltip]:hover::after,
+.eg-sharebar .share-btn[data-tooltip]:focus::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 0.95em;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.eg-sharebar .share-btn[data-tooltip]::after {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.eg-sharebar .share-btn[data-tooltip]:hover::after,
+.eg-sharebar .share-btn[data-tooltip]:focus::after {
+  opacity: 1;
 }
