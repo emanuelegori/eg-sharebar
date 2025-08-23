@@ -19,7 +19,7 @@
 
 - Pulsanti di condivisione social grandi e accessibili per Mastodon, X (ex Twitter), Bluesky e Copia link.
 - Supporto per Mastodon con selezione istanza e inserimento istanza personalizzata.
-- Firma personalizzabile per ogni social ("via @emanuelegori", ecc.).
+- Firma personalizzabile per ogni social ("via @username", ecc.).
 - Copia rapida del link negli appunti.
 - Compatibile con shortcode `[eg_sharebar]` e inserimento via PHP: `<?php eg_sharebar(); ?>` o `if (function_exists('eg_sharebar')) eg_sharebar();`
 - Non è presente alcun sistema di telemetria o tracciamento. 
@@ -28,7 +28,7 @@
 ## Installazione - Installation
 
 1. Scarica o clona il plugin nella cartella `wp-content/plugins/eg-sharebar.
-2. Modifica firma personalizzata in eg-sharebar: 'via @username@istanza'
+2. Modifica e personalizza firma in eg-sharebar. Es.: $signature_masto = ' via @username@istanza';
 3. Attiva il plugin dalla bacheca di WordPress.
 4. Inserisci lo shortcode `[eg_sharebar]` dove vuoi mostrare la barra, oppure richiama la funzione PHP `eg_sharebar()` nel tuo tema/template.
 
